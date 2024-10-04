@@ -5,7 +5,7 @@ CREATE TABLE person(
     email VARCHAR(255) UNIQUE NOT NULL
 );
 
-CREATE TABLE order(
+CREATE TABLE order_table(
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
     user_id INTEGER,
