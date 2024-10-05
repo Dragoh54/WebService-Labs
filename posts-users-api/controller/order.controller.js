@@ -10,17 +10,12 @@ class OrderController {
   }
 
   async getOrdersByUser(req, res) {
-    const { id } = req.query;
-    const getPosts = await db.query(
-      `SELECT title, content FROM order_table WHERE user_id=$1`,
+    const { id } = req.params;
+    const getOrders = await db.query(
+      `SELECT * FROM order_table WHERE user_id = $1`,
       [id]
     );
-    res.json(getPosts.rows);
-  }
-
-  async getAllOrders(req, res) {
-    const allOrders = await db.query(`SELECT * FROM order_table`);
-    res.json(allOrders.rows);
+    res.json(getOrders.rows);
   }
 
   async getOrderById(req, res) {
@@ -29,6 +24,11 @@ class OrderController {
       id,
     ]);
     res.json(order.rows[0]);
+  }
+
+  async getAllOrders(req, res) {
+    const allOrders = await db.query(`SELECT * FROM order_table`);
+    res.json(allOrders.rows);
   }
 
   async updateOrder(req, res) {
